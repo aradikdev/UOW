@@ -29,4 +29,10 @@ public class BooksController : Controller
         Book book = _uow.BookRepository.GetByName(bookName);
         return View(book);
     }
+
+    public IActionResult Order(int id)
+    {
+        Order order = _uow.OrderRepository.GetByID(id);
+        return View(order);
+    }
 }

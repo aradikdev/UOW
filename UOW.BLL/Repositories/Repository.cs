@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UOW.DAL.Datas;
+using UOW.DAL.Entities;
 using UOW.DAL.Interfaces;
 
 namespace UOW.BLL.Repositories;
@@ -50,5 +51,4 @@ public class Repository<T> : IRepository<T> where T : class
     {
         _db.SaveChanges();
     }
-
 }

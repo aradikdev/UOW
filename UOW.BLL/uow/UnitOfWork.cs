@@ -1,6 +1,7 @@
 ﻿using UOW.BLL.Repositories;
 using UOW.DAL.Datas;
 using UOW.DAL.Entities;
+using UOW.DAL.Interfaces;
 
 namespace UOW.BLL.uow;
 
@@ -12,27 +13,27 @@ public class UnitOfWork : IDisposable
         context = _context;
     }
 
-    private Repository<Book> bookRepository;
-    private Repository<Order> orderRepository;
+    private BookRepository bookRepository;
+    private OrderRepository orderRepository;
 
-    public Repository<Book> BookRepository
+    public BookRepository BookRepository
     {
         get
         {
             if (bookRepository == null)
             {
-                bookRepository = new Repository<Book>(context);
+                bookRepository = new BookRepository(context);
             }
             return bookRepository;
         }
     }
-    public Repository<Order> OrderRepository
+    public OrderRepository OrderRepository
     {
         get
         {
             if (orderRepository == null)
             {
-                orderRepository = new Repository<Order>(context);
+                orderRepository = new OrderRepository(context);
             }
             return orderRepository;
         }
