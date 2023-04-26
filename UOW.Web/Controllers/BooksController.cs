@@ -24,4 +24,9 @@ public class BooksController : Controller
         Book book = _uow.BookRepository.GetByID(id);
         return View(book);
     }
+    public IActionResult Name(string bookName)
+    {
+        Book book = _uow.BookRepository.GetByName(bookName);
+        return View(book);
+    }
 }
