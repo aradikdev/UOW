@@ -8,6 +8,7 @@ public interface IRepository<T> where T : class
     T GetByID(int id);
     void Insert(T entity);
     void Delete(int id);
+    void Delete(T entity);
     void Update(T entity);
     void Save();
 }

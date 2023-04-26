@@ -1,27 +1,44 @@
-﻿using UOW.DAL.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using UOW.DAL.Datas;
+using UOW.DAL.Interfaces;
 
 namespace UOW.BLL.Repositories;
 
 public class Repository<T> : IRepository<T> where T : class
 {
-    public void Delete(int id)
-    {
-        throw new NotImplementedException();
-    }
+    private readonly AppDbContext _db;
+    private readonly DbSet<T> dbSet;
 
-    public IEnumerable<T> Get()
+    public Repository(AppDbContext db)
     {
-        throw new NotImplementedException();
+        _db = db;
+        dbSet = _db.Set<T>();
     }
-
     public T GetByID(int id)
     {
-        throw new NotImplementedException();
+        return dbSet.Find(id);
     }
-
+    public IEnumerable<T> Get()
+    {
+        return dbSet.ToList(); ;
+    }
     public void Insert(T entity)
     {
-        throw new NotImplementedException();
+        dbSet.Add(entity);
+    }
+
+    public void Delete(int id)
+    {
+        T entityToDelete = dbSet.Find(id);
+        Delete(entityToDelete);
+    }
+    public void Delete(T entity)
+    {
+        if (_db.Entry(entity).State == EntityState.Detached)
+        {
+            dbSet.Attach(entity);
+        }
+        dbSet.Remove(entity);
     }
 
     public void Save()
