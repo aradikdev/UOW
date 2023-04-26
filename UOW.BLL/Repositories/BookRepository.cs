@@ -6,5 +6,7 @@ namespace UOW.BLL.Repositories;
 
 public class BookRepository : Repository<Book>
 {
-    
+    public BookRepository(AppDbContext db) : base(db)
+    {
+    }
 }

@@ -40,14 +40,15 @@ public class Repository<T> : IRepository<T> where T : class
         }
         dbSet.Remove(entity);
     }
+    public void Update(T entity)
+    {
+        dbSet.Attach(entity);
+        _db.Entry(entity).State = EntityState.Modified;
+    }
 
     public void Save()
     {
-        throw new NotImplementedException();
+        _db.SaveChanges();
     }
 
-    public void Update(T entity)
-    {
-        throw new NotImplementedException();
-    }
 }
