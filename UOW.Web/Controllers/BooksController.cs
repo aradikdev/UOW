@@ -15,6 +15,8 @@ public class BooksController : Controller
 
     public IActionResult Index()
     {
+        var qwe = Guid.NewGuid().ToString();
+        ViewBag.qwe = qwe;
         IEnumerable<Book> books = _uow.BookRepository.Get();
         return View(books);
     }

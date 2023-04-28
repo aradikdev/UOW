@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Article>
+
+@{
+}
+<h1>Статьи</h1>
+@foreach (Article article in Model)
+{
+    <p>@article.Title</p>
+    <p>@article.Fulltext</p>
+}

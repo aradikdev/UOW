@@ -15,6 +15,19 @@ public class UnitOfWork : IDisposable
 
     private BookRepository bookRepository;
     private OrderRepository orderRepository;
+    private ArticleRepository articleRepository;
+
+    public ArticleRepository ArticleRepository
+    {
+        get
+        {
+            if (articleRepository == null)
+            {
+                articleRepository = new ArticleRepository(context);
+            }
+            return articleRepository;
+        }
+    }
 
     public BookRepository BookRepository
     {
